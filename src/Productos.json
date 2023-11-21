@@ -3,10 +3,10 @@
     "id": 1,
     "title": "Producto 1",
     "description": "Descripción 1",
-    "price": 100,
+    "price": 29.99,
     "thumbnail": "imagen1.jpg",
     "code": "code1",
-    "stock": 10
+    "stock": 60
   },
   {
     "id": 2,
