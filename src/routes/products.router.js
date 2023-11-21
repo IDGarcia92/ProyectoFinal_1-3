@@ -4,7 +4,7 @@ import ProductManager from '../ProductManager.js';
 const router = express.Router();
 const jsonFilePath = './src/Productos.json';  // Asegúrate de proporcionar la ruta correcta
 const productManager = new ProductManager(jsonFilePath);
-//await productManager.init();
+await productManager.init();
 
 // Definir las rutas para el manejo de productos
 
@@ -61,7 +61,7 @@ router.post('/', async(req, res) => {
         };
 
         // Verifica si ya existe un producto con el mismo código
-        if (productManager.getProductByCode(code)) {
+        if (productManager.getProducts(code)) {
             res.status(400).json({ error: `Ya existe un producto con el código ${code}.` });
             return;
         };
@@ -127,7 +127,7 @@ router.put('/:pid', async(req, res) => {
 router.delete('/:pid', async(req, res) => {
     try {
         const productId = parseInt(req.params.pid); // parseInt(req.params.pid) obteniene el ID del producto de los parámetros de la URL
-        const existingProductIndex = productManager.getProductIndexById(productId); // Obtenemos el índice del producto en el array de productos utilizando el método getProductIndexById de ProductManager
+        const existingProductIndex = productManager.getProducts(productId); // Obtenemos el índice del producto en el array de productos utilizando el método getProductIndexById de ProductManager
 
         // Verifica si el producto existe
         if (existingProductIndex === -1) {
