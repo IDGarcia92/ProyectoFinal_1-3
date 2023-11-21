@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+import { promises as fsPromises } from 'fs';
 
 class ProductManager {
     constructor(jsonFilePath) {
@@ -9,18 +9,22 @@ class ProductManager {
 
     async init() {
         try {
-            const data = await fs.readFile(this.jsonFilePath, 'utf-8');
+            // Verificar la existencia del archivo
+            await fsPromises.access(this.jsonFilePath);
+            const data = await fsPromises.readFile(this.jsonFilePath, 'utf-8');
             this.products = JSON.parse(data);
-            // Encontrar el último ID al inicializar
+            // Encuentra el último ID al inicializarse
             this.lastId = this.products.reduce((maxId, product) => Math.max(maxId, product.id), 0);
             } catch (error) {
-            // Si hay un error al leer el archivo, asumimos que es porque no existe
-            // o está vacío, y lo manejamos creando un nuevo archivo.
-            await this.saveData();
+                console.error('Error al inicializar ProductManager:', error);
+                // Si hay un error al leer el archivo, asumimos que es porque no existe
+                // o está vacío, y lo manejamos creando un nuevo archivo.
+                await this.saveData();
         };
     };
+    
     async saveData() {
-        await fs.writeFile(this.jsonFilePath, JSON.stringify(this.products, null, 2), 'utf-8');
+        await fsPromises.writeFile(this.jsonFilePath, JSON.stringify(this.products, null, 2), 'utf-8');
     };
     async addProduct(title, description, price, thumbnail, code, stock) {
         const newProduct = {
@@ -49,4 +53,4 @@ class ProductManager {
         return this.products.find(product => product.id === productId);
     };
 };
-module.exports = ProductManager;
+export default ProductManager;

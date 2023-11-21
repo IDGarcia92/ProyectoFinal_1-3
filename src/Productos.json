@@ -88,5 +88,125 @@
     "thumbnail": "imagen10.jpg",
     "code": "code10",
     "stock": 55
+  },
+  {
+    "id": 11,
+    "title": "Producto 1",
+    "description": "Descripción 1",
+    "price": 100,
+    "code": "imagen1.jpg",
+    "stock": "code1",
+    "category": 10,
+    "status": true
+  },
+  {
+    "id": 12,
+    "title": "Producto 2",
+    "description": "Descripción 2",
+    "price": 150,
+    "code": "imagen2.jpg",
+    "stock": "code2",
+    "category": 15,
+    "status": true
+  },
+  {
+    "id": 13,
+    "title": "Producto 3",
+    "description": "Descripción 3",
+    "price": 200,
+    "code": "imagen3.jpg",
+    "stock": "code3",
+    "category": 20,
+    "status": true
+  },
+  {
+    "id": 14,
+    "title": "Producto 4",
+    "description": "Descripción 4",
+    "price": 250,
+    "code": "imagen4.jpg",
+    "stock": "code4",
+    "category": 25,
+    "status": true
+  },
+  {
+    "id": 15,
+    "title": "Producto 5",
+    "description": "Descripción 5",
+    "price": 300,
+    "code": "imagen5.jpg",
+    "stock": "code5",
+    "category": 30,
+    "status": true
+  },
+  {
+    "id": 16,
+    "title": "Producto 6",
+    "description": "Descripción 6",
+    "price": 350,
+    "code": "imagen6.jpg",
+    "stock": "code6",
+    "category": 35,
+    "status": true
+  },
+  {
+    "id": 17,
+    "title": "Producto 7",
+    "description": "Descripción 7",
+    "price": 400,
+    "code": "imagen7.jpg",
+    "stock": "code7",
+    "category": 40,
+    "status": true
+  },
+  {
+    "id": 18,
+    "title": "Producto 8",
+    "description": "Descripción 8",
+    "price": 450,
+    "code": "imagen8.jpg",
+    "stock": "code8",
+    "category": 45,
+    "status": true
+  },
+  {
+    "id": 19,
+    "title": "Producto 9",
+    "description": "Descripción 9",
+    "price": 500,
+    "code": "imagen9.jpg",
+    "stock": "code9",
+    "category": 50,
+    "status": true
+  },
+  {
+    "id": 20,
+    "title": "Producto 10",
+    "description": "Descripción 10",
+    "price": 550,
+    "code": "imagen10.jpg",
+    "stock": "code10",
+    "category": 55,
+    "status": true
+  },
+  {
+    "id": 31,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "price": 200,
+    "code": "imagen_nueva.jpg",
+    "stock": "nuevo_codigo",
+    "category": 15,
+    "status": true
+  },
+  {
+    "id": 43,
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "price": 200,
+    "code": "hola pedro",
+    "stock": "nuevo_codigo",
+    "category": 15,
+    "status": true
   }
 ]
