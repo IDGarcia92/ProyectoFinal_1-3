@@ -2,8 +2,9 @@ import express from 'express';
 import ProductManager from '../ProductManager.js';
 
 const router = express.Router();
-const jsonFilePath = './Productos.json';  // Asegúrate de proporcionar la ruta correcta
+const jsonFilePath = './src/Productos.json';  // Asegúrate de proporcionar la ruta correcta
 const productManager = new ProductManager(jsonFilePath);
+//await productManager.init();
 
 // Definir las rutas para el manejo de productos
 

@@ -5,8 +5,9 @@ class ProductManager {
         this.jsonFilePath = jsonFilePath;
         this.products = [];
         this.lastId = 0;
+        this.init();
     };
-
+    
     async init() {
         try {
             // Verificar la existencia del archivo
@@ -22,7 +23,7 @@ class ProductManager {
                 await this.saveData();
         };
     };
-    
+
     async saveData() {
         await fsPromises.writeFile(this.jsonFilePath, JSON.stringify(this.products, null, 2), 'utf-8');
     };
