@@ -10,10 +10,10 @@ app.use(express.json()); //recibe las peticiones POST // evita undefined
 app.use(express.urlencoded({extended:true})); //recibe los datos de las peticiones POST //evita {} objeto vacío
 
 // Rutas para productos
-app.use('/products', productsRouter);
+app.use('/api/products', productsRouter);
 
 // Rutas para carritos
-app.use('/carts', cartsRouter);
+app.use('/api/carts', cartsRouter);
 
 // Iniciando el servidor después de cargar los datos
 app.listen(PORT, () => {

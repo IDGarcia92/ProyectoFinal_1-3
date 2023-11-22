@@ -1,14 +1,5 @@
 [
   {
-    "id": 3,
-    "title": "Producto 3",
-    "description": "Descripción 3",
-    "price": 200,
-    "thumbnail": "imagen3.jpg",
-    "code": "code3",
-    "stock": 20
-  },
-  {
     "id": 4,
     "title": "Producto 4",
     "description": "Descripción 4",

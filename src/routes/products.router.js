@@ -6,9 +6,9 @@ const jsonFilePath = './src/Productos.json';  // Asegúrate de proporcionar la r
 const productManager = new ProductManager(jsonFilePath);
 await productManager.init();
 
-// Definir las rutas para el manejo de productos
+// Se definen las rutas para el manejo de productos
 
-// Obtener todos los productos
+// Se obtienen todos los productos // ENDPOINT FUNCIONANDO
 router.get('/', async(req, res) => {
     try {
         const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
@@ -21,11 +21,11 @@ router.get('/', async(req, res) => {
     };
 });
 
-// Obtener un producto por ID
+// Obtener un producto por ID // ENDPOINT FUNCIONANDO
 router.get('/:pid', async(req, res) => {
-    try {
-        const productId = parseInt(req.params.pid); // obtiene el ID del producto de los parámetros de la URL.
-        const product = await productManager.getProductById(productId); // el método getProductById de la instancia de ProductManager obtiene el producto correspondiente
+    try { 
+        const productId = parseInt(req.params.pid); // obtiene el ID del productos de la url
+        const product = await productManager.getProductById(productId); // obtiene el producto correspondiente
 
         if (!product) {
             res.status(404).json({ error: 'Producto no encontrado.' });
@@ -40,9 +40,9 @@ router.get('/:pid', async(req, res) => {
     };
 });
 
-// Agregando un nuevo producto en el endpoint '/products'
-router.post('/', async(req, res) => {
-    try {
+// Agregando un nuevo producto // NO FUNCIONA
+router.post('/api/products', async(req, res) => {
+    try { // /api/products // antes '/' //PRUEBAS DE RUTEO
         const {
             title,
             description,
@@ -61,12 +61,13 @@ router.post('/', async(req, res) => {
         };
 
         // Verifica si ya existe un producto con el mismo código
-        if (productManager.getProducts(code)) {
+        if (this.products.some(product => product.code === code)) {
             res.status(400).json({ error: `Ya existe un producto con el código ${code}.` });
-            return;
-        };
+        return;
+        }
 
-        // Agregar el nuevo producto (Llamando al método addProduct de la instancia de ProductManager para agregar el nuevo producto)
+
+        // Se agrega el nuevo producto (Llamando al método addProduct de la instancia de ProductManager para agregar el nuevo producto)
         await productManager.addProduct(title, description, price, thumbnails, code, stock, category, status);
         //await productManager.addProduct('Producto 1', 'Descripción 1', 100, 'imagen1.jpg', 'code1', 10, 1000, 'cat1', true);
         //await productManager.addProduct('Producto 2', 'Descripción 2', 150, 'imagen2.jpg', 'code2', 15, 1000, 'cat2', true);
@@ -87,9 +88,9 @@ router.post('/', async(req, res) => {
     };
 });
 
-// Actualizar un producto por ID en el endpoint /products/:pid
+// Actualizar un producto por ID // ENDPOINT FUNCIONANDO
 router.put('/:pid', async(req, res) => {
-    try {
+    try { 
         const productId = parseInt(req.params.pid); // parseInt(req.params.pid) obtiene el ID del producto de los parámetros de la URL
         const existingProduct = await productManager.getProductById(productId);
 
@@ -123,9 +124,9 @@ router.put('/:pid', async(req, res) => {
     };
 });
 
-// Eliminar un producto por ID
+// Eliminar un producto por ID // ENDPOINT FUNCIONANDO
 router.delete('/:pid', async(req, res) => {
-    try {
+    try { 
         const productId = parseInt(req.params.pid); // parseInt(req.params.pid) obteniene el ID del producto de los parámetros de la URL
         const existingProductIndex = productManager.getProducts(productId); // Obtenemos el índice del producto en el array de productos utilizando el método getProductIndexById de ProductManager
 
@@ -151,3 +152,11 @@ router.delete('/:pid', async(req, res) => {
 
 export default router;
 
+/* 
+        // Verifica si ya existe un producto con el mismo código
+        if (productManager.getProducts(code)) {
+            res.status(400).json({ error: `Ya existe un producto con el código ${code}.` });
+            return;
+        };
+
+*/

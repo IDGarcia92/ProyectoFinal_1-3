@@ -6,6 +6,7 @@ class CartManager {
         this.jsonFilePath = jsonFilePath;
         this.carts = [];
         this.lastCartId = 0;
+        this.carts;
     };
 
     async init() {
@@ -15,8 +16,7 @@ class CartManager {
             // Encuentra el último ID al inicializarse
             this.lastCartId = this.carts.reduce((maxId, cart) => Math.max(maxId, cart.id), 0);
         } catch (error) {
-            // Si hay un error al leer el archivo, asumimos que es porque no existe
-            // o está vacío, y lo manejamos creando un nuevo archivo.
+            // Si hay un error al leer el archivo, asumimos que es porque no existe o está vacio, y lo manejamos creando un nuevo archivo.
             await this.saveData();
         };
     };
