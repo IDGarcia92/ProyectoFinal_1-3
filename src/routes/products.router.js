@@ -66,7 +66,6 @@ router.post('/api/products', async(req, res) => {
         return;
         }
 
-
         // Se agrega el nuevo producto (Llamando al método addProduct de la instancia de ProductManager para agregar el nuevo producto)
         await productManager.addProduct(title, description, price, thumbnails, code, stock, category, status);
         //await productManager.addProduct('Producto 1', 'Descripción 1', 100, 'imagen1.jpg', 'code1', 10, 1000, 'cat1', true);

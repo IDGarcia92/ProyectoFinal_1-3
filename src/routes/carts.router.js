@@ -22,7 +22,7 @@ router.post('/', async(req, res) => {
     };
 });
 
-// obtener carrito por su ID
+// obtener carrito por su ID  // ENDPOINT FUNCIONANDO
 router.get('/:cid', async(req, res) => {
     try { 
         const cartId = parseInt(req.params.cid);
