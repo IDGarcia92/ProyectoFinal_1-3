@@ -36,24 +36,6 @@
     "stock": 40
   },
   {
-    "id": 8,
-    "title": "Producto 8",
-    "description": "Descripción 8",
-    "price": 450,
-    "thumbnail": "imagen8.jpg",
-    "code": "code8",
-    "stock": 45
-  },
-  {
-    "id": 9,
-    "title": "Producto 9",
-    "description": "Descripción 9",
-    "price": 500,
-    "thumbnail": "imagen9.jpg",
-    "code": "code9",
-    "stock": 50
-  },
-  {
     "id": 10,
     "title": "Producto 10",
     "description": "Descripción 10",
@@ -180,6 +162,36 @@
     "code": "hola pedro",
     "stock": "nuevo_codigo",
     "category": 15,
+    "status": true
+  },
+  {
+    "id": 44,
+    "title": "Producto 00",
+    "description": "Descripción 500",
+    "price": 500,
+    "code": "code500",
+    "stock": 500,
+    "category": "cat900",
+    "status": true
+  },
+  {
+    "id": 45,
+    "title": "Producto 050",
+    "description": "Descripción 5800",
+    "price": 4500,
+    "code": "code5050",
+    "stock": 500,
+    "category": "cat9050",
+    "status": true
+  },
+  {
+    "id": 46,
+    "title": "Producto 0510",
+    "description": "Descripción 58400",
+    "price": 42500,
+    "code": "code52050",
+    "stock": 500,
+    "category": "cat92050",
     "status": true
   }
 ]

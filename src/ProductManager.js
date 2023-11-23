@@ -55,5 +55,21 @@ class ProductManager {
     async getProductById(productId) {
         return this.products.find(product => product.id === productId);
     };
+
+    async deleteProduct(id) {
+
+        const productIndex = this.products.findIndex((p) => p.id === id);
+        
+        if (productIndex === -1) {
+        
+        return { error: 'Producto no encontrado.' };
+        
+        }
+        
+        this.products.splice(productIndex, 1);
+        
+        await this.saveData();
+        
+        }
 };
 export default ProductManager;

@@ -6,6 +6,7 @@ const jsonFilePath = './src/Productos.json';  // Asegúrate de proporcionar la r
 const productManager = new ProductManager(jsonFilePath);
 await productManager.init();
 
+
 // Se definen las rutas para el manejo de productos
 
 // Se obtienen todos los productos // ENDPOINT FUNCIONANDO
@@ -40,9 +41,9 @@ router.get('/:pid', async(req, res) => {
     };
 });
 
-// Agregando un nuevo producto // NO FUNCIONA
-router.post('/api/products', async(req, res) => {
-    try { // /api/products // antes '/' //PRUEBAS DE RUTEO
+// Agregando un nuevo producto // ENDPOINT FUNCIONANDO
+router.post('/', async(req, res) => {
+    try { 
         const {
             title,
             description,
@@ -60,10 +61,18 @@ router.post('/api/products', async(req, res) => {
             return;
         };
 
+        const products = await productManager.getProducts()
         // Verifica si ya existe un producto con el mismo código
-        if (this.products.some(product => product.code === code)) {
-            res.status(400).json({ error: `Ya existe un producto con el código ${code}.` });
+        if (products.some((product) => product.code === code)) {
+        
+        res
+        
+        .status(400)
+        
+        .json({ error: `Ya existe un producto con el código ${code}.` });
+        
         return;
+        
         }
 
         // Se agrega el nuevo producto (Llamando al método addProduct de la instancia de ProductManager para agregar el nuevo producto)
@@ -127,35 +136,18 @@ router.put('/:pid', async(req, res) => {
 router.delete('/:pid', async(req, res) => {
     try { 
         const productId = parseInt(req.params.pid); // parseInt(req.params.pid) obteniene el ID del producto de los parámetros de la URL
-        const existingProductIndex = productManager.getProducts(productId); // Obtenemos el índice del producto en el array de productos utilizando el método getProductIndexById de ProductManager
-
-        // Verifica si el producto existe
-        if (existingProductIndex === -1) {
-            res.status(404).json({ error: 'Producto no encontrado.' });
-            return;
-        };
-
-        // Elimina el producto del array de productos
-        productManager.products.splice(existingProductIndex, 1);
-
-        // Guarda los cambios
-        await productManager.saveData();
-
+        const deleteProduct = productManager.deleteProduct(productId);
+        
+        if (deleteProduct?.error) {
+            return res.status(400).json({error: deleteProduct.error});
+        } // “?.” sirve para verificar si existe una propiedad y que no de error en caso de undefined
+        
         console.log(`Producto con ID ${productId} eliminado correctamente.`);
-        res.json({ message: `Producto con ID ${productId} eliminado correctamente.` });
+        res.json({ message: `Producto con ID ${productId} eliminado correctamente.`});
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
         res.status(500).json({ error: 'Error interno del servidor.' });
-    };
+    }
 });
 
 export default router;
-
-/* 
-        // Verifica si ya existe un producto con el mismo código
-        if (productManager.getProducts(code)) {
-            res.status(400).json({ error: `Ya existe un producto con el código ${code}.` });
-            return;
-        };
-
-*/

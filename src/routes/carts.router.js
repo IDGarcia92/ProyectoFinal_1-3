@@ -1,8 +1,9 @@
 import express from 'express';
 import CartManager from '../CartManager.js';
-//import ProductManager from '../ProductManager.js';
+import ProductManager from '../ProductManager.js';
+
 const router = express.Router();
-//const jsonFilePath = './Carritos.json';
+const productManager = new ProductManager('./src/Productos.json');
 const jsonFilePath = './src/Carritos.json';
 const cartManager = new CartManager(jsonFilePath);
 await cartManager.init();
@@ -11,7 +12,7 @@ await cartManager.init();
 
 // creamos un nuevo carrito // ENDPOINT FUNCIONANDO
 router.post('/', async(req, res) => {
-    try { // funciona en la ruta /api/carts y NO SE PORQUE XD
+    try { 
         const newCart = await cartManager.createCart();
 
         console.log('Nuevo carrito creado:', newCart);
@@ -42,14 +43,15 @@ router.get('/:cid', async(req, res) => {
     };
 });
 
-// agregamos un producto a un carrito por ID // NO FUNCIONA
-router.post('/api/carts/:cid/api/products/:pid', async(req, res) => {
+// agregamos un producto especifico a un carrito especifico // ENDPOINT FUNCIONANDO
+router.post('/:cid/product/:pid', async(req, res) => {
+    // probado en http://localhost:8080/api/carts/2
     try { 
         const cartId = parseInt(req.params.cid); 
         const productId = parseInt(req.params.pid); // parseInt(req.params.cid) y parseInt(req.params.pid) para obtener los IDs del carrito y del producto de los parámetros de la URL
         const quantity = req.body.quantity || 1;  // Por defecto, agregar 1 unidad
 
-        // Obtiene el carrito
+        // Obtiene el carrito asociado al ID
         const cart = await cartManager.getCartById(cartId);
 
         // Verifica si el carrito existe
@@ -58,7 +60,7 @@ router.post('/api/carts/:cid/api/products/:pid', async(req, res) => {
             return;
         }
 
-        // Obtiene el producto
+        // Obtiene el producto asociado al ID 
         const product = await productManager.getProductById(productId);
 
         // Verifica si el producto existe
